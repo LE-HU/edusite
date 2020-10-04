@@ -1,2 +1,74 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.erb
+!!!
+%html
+  %body
+    %p
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "Mark Otto, Jacob Thornton, and Bootstrap contributors", :name => "author"}/
+    %meta{:content => "Jekyll v4.1.1", :name => "generator"}/
+    %title Starter Template · Bootstrap
+    %link{:href => "https://getbootstrap.com/docs/4.5/examples/starter-template/", :rel => "canonical"}/
+    / Bootstrap core CSS
+    %link{:crossorigin => "anonymous", :href => "/docs/4.5/dist/css/bootstrap.min.css", :integrity => "sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z", :rel => "stylesheet"}/
+    / Favicons
+    %link{:href => "/docs/4.5/assets/img/favicons/apple-touch-icon.png", :rel => "apple-touch-icon", :sizes => "180x180"}/
+    %link{:href => "/docs/4.5/assets/img/favicons/favicon-32x32.png", :rel => "icon", :sizes => "32x32", :type => "image/png"}/
+    %link{:href => "/docs/4.5/assets/img/favicons/favicon-16x16.png", :rel => "icon", :sizes => "16x16", :type => "image/png"}/
+    %link{:href => "/docs/4.5/assets/img/favicons/manifest.json", :rel => "manifest"}/
+    %link{:color => "#563d7c", :href => "/docs/4.5/assets/img/favicons/safari-pinned-tab.svg", :rel => "mask-icon"}/
+    %link{:href => "/docs/4.5/assets/img/favicons/favicon.ico", :rel => "icon"}/
+    %meta{:content => "/docs/4.5/assets/img/favicons/browserconfig.xml", :name => "msapplication-config"}/
+    %meta{:content => "#563d7c", :name => "theme-color"}/
+    :css
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    / Custom styles for this template
+    %link{:href => "starter-template.css", :rel => "stylesheet"}/
+    %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+      %a.navbar-brand{:href => "#"} Navbar
+      %button.navbar-toggler{"aria-controls" => "navbarsExampleDefault", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarsExampleDefault", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarsExampleDefault.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          %li.nav-item.active
+            %a.nav-link{:href => "#"}
+              Home
+              %span.sr-only (current)
+          %li.nav-item
+            %a.nav-link{:href => "#"} Link
+          %li.nav-item
+            %a.nav-link.disabled{"aria-disabled" => "true", :href => "#", :tabindex => "-1"} Disabled
+          %li.nav-item.dropdown
+            %a#dropdown01.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"} Dropdown
+            .dropdown-menu{"aria-labelledby" => "dropdown01"}
+              %a.dropdown-item{:href => "#"} Action
+              %a.dropdown-item{:href => "#"} Another action
+              %a.dropdown-item{:href => "#"} Something else here
+        %form.form-inline.my-2.my-lg-0
+          %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "text"}/
+          %button.btn.btn-secondary.my-2.my-sm-0{:type => "submit"} Search
+    %main.container{:role => "main"}
+      .starter-template
+        %h1 Bootstrap starter template
+        %p.lead
+          Use this document as a way to quickly start any new project.
+          %br/
+          All you get is this text and a mostly barebones HTML document.
+    / /.container
+    %script{:crossorigin => "anonymous", :integrity => "sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj", :src => "https://code.jquery.com/jquery-3.5.1.slim.min.js"}
+    :javascript
+      window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')
+    %script{:crossorigin => "anonymous", :integrity => "sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf", :src => "/docs/4.5/dist/js/bootstrap.bundle.min.js"}
