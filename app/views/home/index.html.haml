@@ -67,8 +67,15 @@
           Use this document as a way to quickly start any new project.
           %br/
           All you get is this text and a mostly barebones HTML document.
-          .fa.fa-home.btn.btn-success
-            = link_to "Home", root_path, class: 'btn btn-success'
+
+          %div
+            = link_to root_path, class: "btn btn-success mx-3" do
+              .fa.fa-home
+              Home
+
+            = link_to courses_path, class: "btn btn-primary mx-3" do
+              .fa.fa-book
+              Courses
     / /.container
     %script{:crossorigin => "anonymous", :integrity => "sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj", :src => "https://code.jquery.com/jquery-3.5.1.slim.min.js"}
     :javascript

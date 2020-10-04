@@ -16,3 +16,6 @@ require("channels");
 // const imagePath = (name) => images(name, true)
 
 import "bootstrap";
+
+require("trix")
+require("@rails/actiontext")
