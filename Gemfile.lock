@@ -83,6 +83,8 @@ GEM
     erubi (1.9.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (2.14.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     font-awesome-sass (5.13.0)
       sassc (>= 1.11)
@@ -238,6 +240,7 @@ DEPENDENCIES
   bootstrap (~> 4.5, >= 4.5.2)
   byebug
   capybara (>= 2.15)
+  faker (~> 2.14)
   font-awesome-sass (~> 5.13)
   haml-rails (~> 2.0)
   jbuilder (~> 2.7)
