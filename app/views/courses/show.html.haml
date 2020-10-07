@@ -1,3 +1,9 @@
+= link_to 'Courses', courses_path
+\/
+= link_to @course, course_path(@course)
+%p
+= render @course
+
 %p#notice= notice
 
 %p
@@ -7,6 +13,4 @@
   %b Description:
   = @course.description
 
-= link_to 'Edit', edit_course_path(@course)
-\|
-= link_to 'Back', courses_path
+
