@@ -1,16 +1,5 @@
 = link_to 'Courses', courses_path
 \/
-= link_to @course, course_path(@course)
+= link_to @course.title, course_path(@course)
 %p
-= render @course
-
-%p#notice= notice
-
-%p
-  %b Title:
-  = @course.title
-%p
-  %b Description:
-  = @course.description
-
-
+= render 'courses/course', course: @course
