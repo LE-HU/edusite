@@ -22,6 +22,19 @@
 .form-control.is-invalid {
   background-image: none;
 }
+
 .form-control.is-valid {
   background-image: none;
+}
+
+@media (min-width: 1500px) {
+
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
+    max-width: 1440px;
+  }
 }
