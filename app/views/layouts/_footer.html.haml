@@ -1,0 +1,22 @@
+%hr.m-0
+%footer.bg-light
+  .container
+    .row
+      .col-md-4
+        Copyright
+        &copy;
+        = Time.now.year
+        Edusite
+        .row
+        .fa.fa-envelope
+        = mail_to "example@example.com"
+        .row
+      .col-md-4
+        Privacy policy
+        .row
+        Terms and conditions
+      .col-md-4
+        About us
+        .row
+        = link_to 'Teach on Edusite', new_course_path
+

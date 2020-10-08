@@ -1,3 +1,7 @@
+%h1.text-center.h3.my-3
+  Users
+  .badge.badge-info
+    = @users.count
 
 .card-columns
   - @users.each do |user|
