@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :courses
 
   after_create :assign_default_role
+  validate :must_have_a_role, on: :update
 
   def assign_default_role
     if User.count == 1
@@ -26,5 +27,13 @@ class User < ApplicationRecord
 
   def username
     self.email.split(/@/).first
+  end
+
+  private
+
+  def must_have_a_role
+    unless roles.any?
+      errors.add(:roles, "Must have at least one role")
+    end
   end
 end
