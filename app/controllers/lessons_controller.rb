@@ -12,7 +12,7 @@ class LessonsController < ApplicationController
   def new
     @course = Course.friendly.find(params[:course_id])
     @lesson = Lesson.new
-    authorize @lesson
+    # authorize @lesson
   end
 
   def edit
