@@ -18,9 +18,11 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def new?
+    @record.course.user_id == @user.id
   end
 
   def create?
+    @record.course.user_id == @user.id
   end
 
   def destroy?

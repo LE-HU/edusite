@@ -6,6 +6,7 @@
   .form-inputs
     = f.input :title
     = f.input :description, as: :rich_text_area
+    %small= f.error :description, class: 'text-danger'
     = f.input :short_description
     = f.input :language, collection: Course.languages, include_blank: true
     = f.input :level, collection: Course.levels, include_blank: true
