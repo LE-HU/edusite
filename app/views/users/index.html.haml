@@ -3,18 +3,18 @@
   .badge.badge-info
     = @users.count
 
-.card-columns
-  - @users.each do |user|
-    = render 'users/user', user: user
+-# .card-columns
+-#   - @users.each do |user|
+-#     = render 'users/user', user: user
 
-.form-inline.my-2
-  = search_form_for @q do |f|
-    = f.search_field :email_cont, placeholder: 'email'
-    = f.search_field :sign_in_count_eq, placeholder: 'sign in count'
-    = f.search_field :email_or_sign_in_count_eq, placeholder: 'email or sign in count'
-    = f.submit
-  .ml-2
-  = link_to 'refresh', users_path
+-# .form-inline.my-2
+-#   = search_form_for @q do |f|
+-#     = f.search_field :email_cont, placeholder: 'email'
+-#     = f.search_field :sign_in_count_eq, placeholder: 'sign in count'
+-#     = f.search_field :email_or_sign_in_count_eq, placeholder: 'email or sign in count'
+-#     = f.submit
+-#   .ml-2
+-#   = link_to 'refresh', users_path
 
 %table.table.table-bordered
   %thead
@@ -27,6 +27,7 @@
       %th= sort_link(@q, :last_sign_in_at)
       %th= sort_link(@q, :current_sign_in_ip)
       %th= sort_link(@q, :last_sign_in_ip)
+      %th= sort_link(@q, :roles)
   %tbody
     - @users.each do |user|
       %tr
@@ -38,3 +39,9 @@
         %td= user.last_sign_in_at
         %td= user.current_sign_in_ip
         %td= user.last_sign_in_ip
+        %td
+          - user.roles.each do |role|
+            .badge.badge-info
+              = role.name
+          - if policy(user).edit?
+            = link_to 'Edit roles', edit_user_path(user), class: "btn btn-sm btn-warning"
