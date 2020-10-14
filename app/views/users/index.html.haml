@@ -21,37 +21,43 @@
 -#   .ml-2
 -#   = link_to 'refresh', users_path
 
-%table.table.table-bordered
-  %thead
-    %tr
-      %th= sort_link(@q, :id)
-      %th= sort_link(@q, :email)
-      %th= sort_link(@q, :created_at)
-      %th= sort_link(@q, :sign_in_count)
-      %th= sort_link(@q, :current_sign_in_at)
-      %th= sort_link(@q, :last_sign_in_at)
-      %th= sort_link(@q, :current_sign_in_ip)
-      %th= sort_link(@q, :last_sign_in_ip)
-      %th= sort_link(@q, :roles)
-  %tbody
-    - @users.each do |user|
+.form-inline.my-3
+  = search_form_for @q do |f|
+    = f.search_field :email_cont, placeholder: "email"
+    = f.submit
+
+.table-responsive
+  %table.table.table-bordered.table-striped.table-sm
+    %thead
       %tr
-        %td= user.id
-        %td
-          - if user.online?
-            .text-success.fa.fa-user-circle
-          - else
-            .text-danger.fa.fa-user-circle
-          = link_to user.email, user
-        %td= user.created_at
-        %td= user.sign_in_count
-        %td= user.current_sign_in_at
-        %td= user.last_sign_in_at
-        %td= user.current_sign_in_ip
-        %td= user.last_sign_in_ip
-        %td
-          - user.roles.each do |role|
-            .badge.badge-info
-              = role.name
-          - if policy(user).edit?
-            = link_to 'Edit roles', edit_user_path(user), class: "btn btn-sm btn-warning"
+        %th= sort_link(@q, :id)
+        %th= sort_link(@q, :email)
+        %th= sort_link(@q, :created_at)
+        %th= sort_link(@q, :sign_in_count)
+        %th= sort_link(@q, :current_sign_in_at)
+        %th= sort_link(@q, :last_sign_in_at)
+        %th= sort_link(@q, :current_sign_in_ip)
+        %th= sort_link(@q, :last_sign_in_ip)
+        %th= sort_link(@q, :roles)
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td
+            - if user.online?
+              .text-success.fa.fa-user-circle
+            - else
+              .text-danger.fa.fa-user-circle
+            = link_to user.email, user
+          %td= user.created_at
+          %td= user.sign_in_count
+          %td= user.current_sign_in_at
+          %td= user.last_sign_in_at
+          %td= user.current_sign_in_ip
+          %td= user.last_sign_in_ip
+          %td
+            - user.roles.each do |role|
+              .badge.badge-info
+                = role.name
+            - if policy(user).edit?
+              = link_to 'Edit roles', edit_user_path(user), class: "btn btn-sm btn-warning"

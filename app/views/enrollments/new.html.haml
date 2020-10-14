@@ -1,0 +1,14 @@
+- content_for :title do
+  Edusite
+  |
+  New Enrollment
+
+.card
+  .card-header
+    #h1.h3
+      .fa.fa-book
+      New enrollment
+  .card-body
+    = render 'form'
+  .card-footer
+    = link_to 'Back', enrollments_path
