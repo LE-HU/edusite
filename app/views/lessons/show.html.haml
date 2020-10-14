@@ -1,3 +1,8 @@
+- content_for :title do
+  Edusite
+  |
+  = @lesson.title
+
 = link_to 'Courses', courses_path
 \/
 = link_to @lesson.course.title, course_path(@lesson.course)
