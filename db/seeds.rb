@@ -1,3 +1,5 @@
+PublicActivity.enabled = false
+
 # User.create!(email: "admin@example.com",
 #              password: "admin@example.com",
 #              password_confirmation: "admin@example.com")
@@ -13,3 +15,5 @@
     user_id: User.first.id,
   })
 end
+
+PublicActivity.enabled = true

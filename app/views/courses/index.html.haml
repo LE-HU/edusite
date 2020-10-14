@@ -1,7 +1,7 @@
 %h1.text-center.h3.my-3
   Courses
   .badge.badge-info
-    = @courses.count
+    = @all_courses.count
 
 .row
   .col-md-2
@@ -22,7 +22,9 @@
         = f.submit :Submit, class: "btn btn-primary", style: "display: inline;"
         = link_to :Refresh, courses_path, class: "btn btn-secondary p-2", style: "display: inline;"
   .col-md-10
+    != pagy_bootstrap_nav(@pagy)
     .card-columns
       - @courses.each do |course|
         = render 'courses/course', course: course
+    != pagy_bootstrap_nav(@pagy)
 %br
