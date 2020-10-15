@@ -1,19 +1,19 @@
 - content_for :title do
   Edusite
   |
-  Edit Enrollment
+  Edit Review
 
 
 .card
   .card-header
     #h1.h3
       .fa.fa-book
-      Editing enrollment
+      Edit a Review
   .card-body
     = render 'form'
   .card-footer
-    = link_to 'Show', @enrollment
+    = link_to 'Show Review', @enrollment
     \|
-    = link_to 'Back', enrollments_path
+    = link_to 'Back to Course', course_path(@enrollment.course)
 
 

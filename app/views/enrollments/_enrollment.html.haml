@@ -1,0 +1,22 @@
+- content_for :title do
+  Edusite
+  |
+  Enrollment Details
+
+.card
+  .card-header
+    .fa.fa-user
+    = link_to enrollment.user.username, user_path(enrollment.user)
+    .fa.fa-clock
+    = time_ago_in_words(enrollment.updated_at)
+    .fa.fa-graduation-cap
+    = link_to enrollment.course, course_path(enrollment.course)
+  .card-body
+    .fa.fa-star
+    = enrollment.rating
+    .fa.fa-comment
+    = enrollment.review
+  - if current_user
+    .card-footer
+      - if policy(enrollment).edit?
+        = link_to 'Edit review', edit_enrollment_path(enrollment)
