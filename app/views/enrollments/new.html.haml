@@ -7,8 +7,12 @@
   .card-header
     #h1.h3
       .fa.fa-book
-      New enrollment
+      Enroll to a course -
+      = link_to @course.title, course_path(@course)
   .card-body
-    = render 'form'
+    = form_tag course_enrollments_path(@course) do
+      = label_tag
+      = submit_tag "Enroll for #{number_to_currency(@course.price)}", class: "btn btn-sm btn-success"
+
   .card-footer
     = link_to 'Back', enrollments_path
