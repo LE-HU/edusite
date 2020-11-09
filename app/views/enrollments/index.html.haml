@@ -52,7 +52,7 @@
             - if enrollment.rating.present?
               = enrollment.updated_at.strftime("%d-%b-%Y, %H:%M")
           %td= link_to 'See review', enrollment
-          %td= link_to 'Add review', edit_enrollment_path(enrollment)
+          %td= link_to 'Edit review', edit_enrollment_path(enrollment)
           %td= link_to 'Cancel enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
 
 != pagy_bootstrap_nav(@pagy)
