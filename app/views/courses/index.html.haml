@@ -6,12 +6,15 @@
 %h1.text-center.h3.my-3
   Courses
   .badge.badge-info
-    = @all_courses.count
+    - if @all_courses.nil?
+      0
+    - else
+      = @all_courses.count
 
 .row
   .col-md-2
     %div.my-3
-      = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
+      = search_form_for @ransack_courses, as: :courses_search, url: @ransack_path do |f|
         = f.label :title
         = f.search_field :title_cont, placeholder: 'title_cont', class: 'form-control my-1'
         = f.label :short_description
@@ -25,11 +28,12 @@
         = f.label :user_email
         = f.search_field :user_email_cont, placeholder: 'user_email', class: 'form-control my-1'
         = f.submit :Submit, class: "btn btn-primary", style: "display: inline;"
-        = link_to :Refresh, courses_path, class: "btn btn-secondary p-2", style: "display: inline;"
+        = link_to "Refresh", @ransack_path, class: "btn btn-secondary p-2", style: "display: inline;"
   .col-md-10
     != pagy_bootstrap_nav(@pagy)
     .card-columns
-      - @courses.each do |course|
-        = render 'courses/course', course: course
+      - unless @courses.nil?
+        - @courses.each do |course|
+          = render 'courses/course', course: course
     != pagy_bootstrap_nav(@pagy)
 %br

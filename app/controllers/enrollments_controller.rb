@@ -3,6 +3,7 @@ class EnrollmentsController < ApplicationController
   before_action :set_course, only: [:new, :create]
 
   def index
+    @ransack_path = enrollments_path
     @q = Enrollment.ransack(params[:q])
     @pagy, @enrollments = pagy(@q.result.includes(:user))
 
@@ -50,6 +51,13 @@ class EnrollmentsController < ApplicationController
       format.html { redirect_to enrollments_url, notice: "Enrollment was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def my_students
+    @ransack_path = my_students_enrollments_path
+    @q = Enrollment.joins(:course).where(courses: { user: current_user }).ransack(params[:q])
+    @pagy, @enrollments = pagy(@q.result.includes(:user))
+    render "index"
   end
 
   private
