@@ -19,5 +19,7 @@
     = enrollment.review
   - if current_user
     .card-footer
+      = link_to 'Back', enrollments_path
       - if policy(enrollment).edit?
+        %br
         = link_to 'Edit review', edit_enrollment_path(enrollment)
