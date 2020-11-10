@@ -1,99 +1,100 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-  %a.navbar-brand{:href => "/"} Edusite
-  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
-    - if current_user
-      %ul.navbar-nav.mr-auto
-        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(root_path)}"}
-          = link_to root_path, class: 'nav-link' do
-            .fa.fa-home
-            Home
-        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
-          = link_to courses_path, class: 'nav-link' do
-            .fa.fa-graduation-cap
-            Courses
+  .container
+    %a.navbar-brand{:href => "/"} Edusite
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      - if current_user
+        %ul.navbar-nav.mr-auto
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(root_path)}"}
+            = link_to root_path, class: 'nav-link' do
+              .fa.fa-home
+              Home
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
+            = link_to courses_path, class: 'nav-link' do
+              .fa.fa-graduation-cap
+              Courses
 
-        - if current_user.has_role?(:student)
+          - if current_user.has_role?(:student)
+            %li.nav-item.dropdown
+              %a#studentDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                .fa.fa-user-graduate
+                Student
+              .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "studentDropdown"}
+                = link_to purchased_courses_path, class: "dropdown-item" do
+                  .fa.fa-graduation-cap
+                  Purchased Courses
+                  .badge.badge-dark.text-light
+                    = current_user.enrollments.count
+                = link_to pending_review_courses_path, class: "dropdown-item" do
+                  .fa.fa-comment-dots
+                  Pending Review
+                  .badge.badge-dark.text-light
+                    = current_user.enrollments.pending_review.count
+
+          - if current_user.has_role?(:teacher)
+            %li.nav-item.dropdown
+              %a#teacherDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                .fa.fa-chalkboard-teacher
+                Teacher
+              .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "teacherDropdown"}
+                = link_to new_course_path, class: "dropdown-item" do
+                  .fa.fa-plus
+                  New Course
+                = link_to created_courses_path, class: "dropdown-item" do
+                  .fa.fa-graduation-cap
+                  Created Courses
+                  .badge.badge-dark.text-light
+                    = current_user.courses.count
+                = link_to my_students_enrollments_path, class: "dropdown-item" do
+                  .fa.fa-users
+                  My Students
+                  .badge.badge-dark.text-light
+                    = Enrollment.joins(:course).where(courses: { user: current_user }).count
+
+          - if current_user.has_role?(:admin)
+            %li.nav-item.dropdown
+              %a#adminDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                .fa.fa-user-cog
+                Admin
+              .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "adminDropdown"}
+                = link_to users_path, class: "dropdown-item" do
+                  .fa.fa-users
+                  Users
+                  .badge.badge-dark.text-light
+                    = User.count
+                = link_to enrollments_path, class: "dropdown-item" do
+                  .fa.fa-book
+                  Enrollments
+                  .badge.badge-dark.text-light
+                    = Enrollment.count
+                = link_to activity_path, class: "dropdown-item" do
+                  .fa.fa-bell
+                  Activity
+
+        = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
+          .input-group
+            = f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off
+            %span.input-group-append
+              %button.btn.btn-primary.btn-sm{:type => "submit"}
+                %span.fa.fa-search{"aria-hidden" => "true"}
+
+        %ul.navbar-nav.mr-right.ml-2
           %li.nav-item.dropdown
-            %a#studentDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              .fa.fa-user-graduate
-              Student
-            .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "studentDropdown"}
-              = link_to purchased_courses_path, class: "dropdown-item" do
-                .fa.fa-graduation-cap
-                Purchased Courses
-                .badge.badge-dark.text-light
-                  = current_user.enrollments.count
-              = link_to pending_review_courses_path, class: "dropdown-item" do
-                .fa.fa-comment-dots
-                Pending Review
-                .badge.badge-dark.text-light
-                  = current_user.enrollments.pending_review.count
-
-        - if current_user.has_role?(:teacher)
-          %li.nav-item.dropdown
-            %a#teacherDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              .fa.fa-chalkboard-teacher
-              Teacher
-            .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "teacherDropdown"}
-              = link_to new_course_path, class: "dropdown-item" do
-                .fa.fa-plus
-                New Course
-              = link_to created_courses_path, class: "dropdown-item" do
-                .fa.fa-graduation-cap
-                Created Courses
-                .badge.badge-dark.text-light
-                  = current_user.courses.count
-              = link_to my_students_enrollments_path, class: "dropdown-item" do
-                .fa.fa-users
-                My Students
-                .badge.badge-dark.text-light
-                  = Enrollment.joins(:course).where(courses: { user: current_user }).count
-
-        - if current_user.has_role?(:admin)
-          %li.nav-item.dropdown
-            %a#adminDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              .fa.fa-user-cog
-              Admin
-            .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "adminDropdown"}
-              = link_to users_path, class: "dropdown-item" do
-                .fa.fa-users
-                Users
-                .badge.badge-dark.text-light
-                  = User.count
-              = link_to enrollments_path, class: "dropdown-item" do
-                .fa.fa-book
-                Enrollments
-                .badge.badge-dark.text-light
-                  = Enrollment.count
-              = link_to activity_path, class: "dropdown-item" do
-                .fa.fa-bell
-                Activity
-
-      = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
-        .input-group
-          = f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off
-          %span.input-group-append
-            %button.btn.btn-primary.btn-sm{:type => "submit"}
-              %span.fa.fa-search{"aria-hidden" => "true"}
-
-      %ul.navbar-nav.mr-right.ml-2
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            %b= current_user.email
-          .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdown"}
-            = link_to user_path(current_user), class: "dropdown-item" do
-              .fa.fa-user
-              %b My profile
-            = link_to edit_user_registration_path, class: "dropdown-item" do
-              .fa.fa-cog
-              %b Account settings
-            = link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do
-              .fa.fa-sign-out-alt
-              %b Sign out
-    - else
-      %ul.navbar-nav.mr-auto
-      %ul.navbar-nav.mr-right
-        %li.nav-item= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'
-        %li.nav-item= link_to 'Log In', new_user_session_path, class: 'nav-link'
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %b= current_user.email
+            .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdown"}
+              = link_to user_path(current_user), class: "dropdown-item" do
+                .fa.fa-user
+                %b My profile
+              = link_to edit_user_registration_path, class: "dropdown-item" do
+                .fa.fa-cog
+                %b Account settings
+              = link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do
+                .fa.fa-sign-out-alt
+                %b Sign out
+      - else
+        %ul.navbar-nav.mr-auto
+        %ul.navbar-nav.mr-right
+          %li.nav-item= link_to 'Sign Up', new_user_registration_path, class: 'nav-link'
+          %li.nav-item= link_to 'Log In', new_user_session_path, class: 'nav-link'

@@ -10,8 +10,13 @@
       %br
       = review_button(course)
   .card-footer
-    .fa.fa-tasks
-    = course.lessons.count
+    .row
+      .col-md-6
+        .fa.fa-tasks
+        = course.lessons.count
+      .col-md-6.text-right
+        .fa.fa-star
+        = course.average_rating
   .card-footer
     .row
       .col-md-6
