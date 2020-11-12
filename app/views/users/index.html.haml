@@ -7,20 +7,6 @@
   Users
   .badge.badge-info
     = @users.count
-
--# .card-columns
--#   - @users.each do |user|
--#     = render 'users/user', user: user
-
--# .form-inline.my-2
--#   = search_form_for @q do |f|
--#     = f.search_field :email_cont, placeholder: 'email'
--#     = f.search_field :sign_in_count_eq, placeholder: 'sign in count'
--#     = f.search_field :email_or_sign_in_count_eq, placeholder: 'email or sign in count'
--#     = f.submit
--#   .ml-2
--#   = link_to 'refresh', users_path
-
 .form-inline.my-3
   = search_form_for @q do |f|
     = f.search_field :email_cont, placeholder: "email"
@@ -40,6 +26,8 @@
         %th= sort_link(@q, :last_sign_in_at)
         %th= sort_link(@q, :current_sign_in_ip)
         %th= sort_link(@q, :last_sign_in_ip)
+        %th= sort_link(@q, :courses_count)
+        %th= sort_link(@q, :enrollments_count)
         %th= sort_link(@q, :roles)
     %tbody
       - @users.each do |user|
@@ -57,6 +45,8 @@
           %td= user.last_sign_in_at
           %td= user.current_sign_in_ip
           %td= user.last_sign_in_ip
+          %td= user.courses_count
+          %td= user.enrollments_count
           %td
             - user.roles.each do |role|
               .badge.badge-info

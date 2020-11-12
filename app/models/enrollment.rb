@@ -3,7 +3,9 @@ class Enrollment < ApplicationRecord
   friendly_id :to_s, use: :slugged
 
   belongs_to :course, counter_cache: true
-  belongs_to :user
+  #Course.find_each { |course| Course.reset_counters(course.id, :enrollments) }
+  belongs_to :user, counter_cache: true
+  #User.find_each { |user| User.reset_counters(user.id, :enrollments) }
 
   validates :user, :course, presence: true
   validates_uniqueness_of :user_id, scope: :course_id

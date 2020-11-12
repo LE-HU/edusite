@@ -24,6 +24,12 @@
     .row
     = 'last_sign_in_ip'.humanize
     = user.last_sign_in_ip
+    .row
+    = 'courses created'.humanize
+    = user.courses_count
+    .row
+    = 'enrollments to courses'.humanize
+    = user.enrollments_count
   .card-footer
     - user.roles.each do |role|
       .badge.badge-info

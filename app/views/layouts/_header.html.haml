@@ -25,7 +25,7 @@
                   .fa.fa-graduation-cap
                   Purchased Courses
                   .badge.badge-dark.text-light
-                    = current_user.enrollments.count
+                    = current_user.enrollments_count
                 = link_to pending_review_courses_path, class: "dropdown-item" do
                   .fa.fa-comment-dots
                   Pending Review
@@ -45,7 +45,7 @@
                   .fa.fa-graduation-cap
                   Created Courses
                   .badge.badge-dark.text-light
-                    = current_user.courses.count
+                    = current_user.courses_count
                 = link_to my_students_enrollments_path, class: "dropdown-item" do
                   .fa.fa-users
                   My Students
