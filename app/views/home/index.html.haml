@@ -52,7 +52,7 @@
   .fa.fa-user-graduate
   Continue Learning
 .card-columns
-  - @courses.each do |course|
+  - @purchased_courses.each do |course|
     = render 'courses/course', course: course
 
 %hr
@@ -60,7 +60,7 @@
   .fa.fa-chart-line
   Popular courses
 .card-columns
-  - @courses.each do |course|
+  - @popular_courses.each do |course|
     = render 'courses/course', course: course
 
 %hr
@@ -68,7 +68,7 @@
   .fa.fa-star
   Top rated courses
 .card-columns
-  - @courses.each do |course|
+  - @top_rated_courses.each do |course|
     = render 'courses/course', course: course
 
 %hr
@@ -86,7 +86,7 @@
   .fa.fa-comment
   What our students say
 .card-columns
-  - @enrollments.each do |enrollment|
+  - @latest_reviews.each do |enrollment|
     = render 'enrollments/enrollment', enrollment: enrollment
 
 %hr
