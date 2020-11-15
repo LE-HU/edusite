@@ -15,4 +15,4 @@
       = submit_tag "Enroll for #{number_to_currency(@course.price)}", class: "btn btn-sm btn-success"
 
   .card-footer
-    = link_to 'Back', enrollments_path
+    = link_to 'Back', course_path(@course)

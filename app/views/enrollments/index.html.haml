@@ -7,7 +7,7 @@
 %h1.text-center.h3.my-3
   = action_name.humanize
   enrollments
-  .badge.badge-info
+  .badge.badge-dark
     = @enrollments.count
 
 = search_form_for @q, url: @ransack_path do |f|

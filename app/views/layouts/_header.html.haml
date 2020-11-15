@@ -24,12 +24,12 @@
                 = link_to purchased_courses_path, class: "dropdown-item" do
                   .fa.fa-graduation-cap
                   Purchased Courses
-                  .badge.badge-dark.text-light
+                  .badge.badge-dark
                     = current_user.enrollments_count
                 = link_to pending_review_courses_path, class: "dropdown-item" do
                   .fa.fa-comment-dots
                   Pending Review
-                  .badge.badge-dark.text-light
+                  .badge.badge-dark
                     = current_user.enrollments.pending_review.count
 
           - if current_user.has_role?(:teacher)
@@ -44,12 +44,12 @@
                 = link_to created_courses_path, class: "dropdown-item" do
                   .fa.fa-graduation-cap
                   Created Courses
-                  .badge.badge-dark.text-light
+                  .badge.badge-dark
                     = current_user.courses_count
                 = link_to my_students_enrollments_path, class: "dropdown-item" do
                   .fa.fa-users
                   My Students
-                  .badge.badge-dark.text-light
+                  .badge.badge-dark
                     = Enrollment.joins(:course).where(courses: { user: current_user }).count
 
           - if current_user.has_role?(:admin)
@@ -61,12 +61,12 @@
                 = link_to users_path, class: "dropdown-item" do
                   .fa.fa-users
                   Users
-                  .badge.badge-dark.text-light
+                  .badge.badge-dark
                     = User.count
                 = link_to enrollments_path, class: "dropdown-item" do
                   .fa.fa-book
                   Enrollments
-                  .badge.badge-dark.text-light
+                  .badge.badge-dark
                     = Enrollment.count
                 = link_to activity_path, class: "dropdown-item" do
                   .fa.fa-bell

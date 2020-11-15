@@ -7,7 +7,7 @@
 %h1.text-center.h3.my-3
   = action_name.humanize
   courses
-  .badge.badge-info
+  .badge.badge-dark
     - if @all_courses.nil?
       0
     - else
@@ -17,20 +17,27 @@
   .col-md-2
     %div.my-3
       = search_form_for @ransack_courses, as: :courses_search, url: @ransack_path do |f|
-        = f.label :title
+        = sort_link((@ransack_courses), :title)
         = f.search_field :title_cont, placeholder: 'title_cont', class: 'form-control my-1'
-        = f.label :short_description
+        = sort_link((@ransack_courses), :short_description)
         = f.search_field :short_description_cont, placeholder: 'short_description_cont', class: 'form-control my-1'
-        = f.label :language
+        = sort_link((@ransack_courses), :language)
         = f.select :language_cont, Course.languages, include_blank: true, class: 'form-control my-1'
-        = f.label :level
+        = sort_link((@ransack_courses), :level)
         = f.select :level_cont, Course.levels, include_blank: true, class: 'form-control my-1'
-        = f.label :price
+        = sort_link((@ransack_courses), :price)
         = f.search_field :price_eq, placeholder: 'price', class: 'form-control my-1'
-        = f.label :user_email
+        = sort_link((@ransack_courses), :user_email)
         = f.search_field :user_email_cont, placeholder: 'user_email', class: 'form-control my-1'
-        = f.submit :Submit, class: "btn btn-primary", style: "display: inline;"
-        = link_to "Refresh", @ransack_path, class: "btn btn-secondary p-2", style: "display: inline;"
+        = sort_link((@ransack_courses), :average_rating, "Average rating")
+        %br
+        = sort_link((@ransack_courses), :created_at, "Creation date")
+        %br
+        = sort_link((@ransack_courses), :enrollments_count, "Popularity")
+        %br
+        = f.submit :Submit, class: "btn btn-primary mt-2"
+        %br
+        = link_to "Refresh", @ransack_path, class: "btn btn-secondary mt-2"
   .col-md-10
     != pagy_bootstrap_nav(@pagy)
     .card-columns
