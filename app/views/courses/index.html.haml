@@ -1,10 +1,12 @@
 - content_for :title do
   Edusite
   |
-  Courses
+  = action_name.humanize
+  courses
 
 %h1.text-center.h3.my-3
-  Courses
+  = action_name.humanize
+  courses
   .badge.badge-info
     - if @all_courses.nil?
       0

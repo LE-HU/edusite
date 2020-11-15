@@ -31,12 +31,12 @@
     .row
       .col-md-6
         .far.fa-clock
-        = course.created_at.strftime('%d-%b-%Y')
+        = course.updated_at.strftime('%d-%b-%Y')
       .col-md-6.text-right
         .fa.fa-chalkboard-teacher
         = link_to course.user.username, user_path(course.user)
   - if current_user
-    - if policy(course).edit?
+    - if policy(course).owner?
       .card-footer
         -# = link_to 'Show', course, class: 'btn btn-sm btn-primary'
         = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'

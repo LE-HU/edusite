@@ -1,10 +1,12 @@
 - content_for :title do
   Edusite
   |
-  Enrollments
+  = action_name.humanize
+  enrollments
 
 %h1.text-center.h3.my-3
-  Enrollments
+  = action_name.humanize
+  enrollments
   .badge.badge-info
     = @enrollments.count
 
