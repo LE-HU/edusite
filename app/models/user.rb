@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :courses
   has_many :enrollments
+  has_many :user_lessons
 
   after_create :assign_default_role
   validate :must_have_a_role, on: :update
@@ -38,6 +39,12 @@ class User < ApplicationRecord
 
   def buy_course(course)
     self.enrollments.create(course: course, price: course.price)
+  end
+
+  def view_lesson(lesson)
+    unless self.user_lessons.where(lesson: lesson).any?
+      self.user_lessons.create(lesson: lesson)
+    end
   end
 
   private

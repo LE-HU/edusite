@@ -7,12 +7,12 @@ class LessonsController < ApplicationController
 
   def show
     authorize @lesson
+    current_user.view_lesson(@lesson)
   end
 
   def new
     @course = Course.friendly.find(params[:course_id])
     @lesson = Lesson.new
-    # authorize @lesson
   end
 
   def edit
