@@ -24,13 +24,14 @@
     %thead
       %tr
         %th= sort_link(@q, :id)
-        %th= sort_link(@q, :user_email)
+        %th= sort_link(@q, :user_email, "User")
         %th= sort_link(@q, :created_at)
-        %th= sort_link(@q, :course_title)
+        %th= sort_link(@q, :course_title, "Course")
         %th= sort_link(@q, :price)
         %th= sort_link(@q, :rating)
         %th= sort_link(@q, :review)
         %th= sort_link(@q, :updated_at)
+        %th= sort_link(@q, :progress)
         %th
         %th
         %th
@@ -48,8 +49,13 @@
           %td
             - if enrollment.rating.present?
               = enrollment.updated_at.strftime("%d-%b-%Y, %H:%M")
+          %td= number_to_percentage(enrollment.course.progress(enrollment.user), precision: 0)
           %td= link_to 'See review', enrollment
-          %td= link_to 'Edit review', edit_enrollment_path(enrollment)
-          %td= link_to 'Cancel enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
+          %td
+            - if policy(enrollment).edit?
+              = link_to 'Edit review', edit_enrollment_path(enrollment)
+          %td
+            - if policy(enrollment).destroy?
+              = link_to 'Cancel enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' }
 
 != pagy_bootstrap_nav(@pagy)

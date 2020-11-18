@@ -9,11 +9,43 @@
 %p
 
 .row
-  .col-lg-6
+  .col-lg-8.order-1.order-lg-1
+    .jumbotron
+      %h1.h3
+        = @course.title
+      %p
+      .row
+      Latest update -
+      = @course.updated_at.strftime("%m/%Y")
+      .row
+      Language -
+      .fa.fa-globe-africa
+      = @course.language
+      .row
+      Level -
+      .fa.fa-signal
+      = @course.level
+      %p
+      = @course.description
+
+    %h2.h4.my-3
+      .fa.fa-tasks
+      = pluralize(@course.lessons_count, "Lesson")
+      .float-right
+        .fa.fa-spinner
+        = number_to_percentage(@course.progress(current_user), precision: 0)
+
+    %ul.list-group
+      - @lessons.each do |lesson|
+        = render 'lessons/lesson_preview', lesson: lesson
+
+    %h2.h4.my-3
+      .fa.fa-comment
+      = pluralize(@enrollments_with_review.count, "Review")
+    - @enrollments_with_review.each do |enrollment|
+      = render 'enrollments/enrollment', enrollment: enrollment
+
+
+  .col-lg-4.order-0.order-lg-1
     = render @course
-  .col-lg-6
-    - if policy(@course).owner?
-      = link_to "Add a lesson", new_course_lesson_path(@course, @lesson), class: "btn btn-sm btn-primary mb-3"
-    - @lessons.each do |lesson|
-      = render 'lessons/lesson', lesson: lesson
 
