@@ -37,7 +37,8 @@
 
     %ul.list-group
       - @lessons.each do |lesson|
-        = render 'lessons/lesson_preview', lesson: lesson
+        %li.list-group-item
+          = render 'lessons/lesson_preview', lesson: lesson
 
     %h2.h4.my-3
       .fa.fa-comment

@@ -10,6 +10,25 @@
 = link_to @lesson.title, course_lesson_path(@course, @lesson)
 %p
 
-= render 'lessons/lesson', lesson: @lesson
+.row
+  .col-lg-8
+    = render 'lessons/lesson', lesson: @lesson
+  .col.lg-4
 
-= link_to 'Back', course_path(@lesson.course)
+    %ul.list-group
+      %li.list-group-item
+        .fa.fa-graduation-cap
+        = link_to @lesson.course.title, course_path(@lesson.course)
+        %p
+        .fa.fa-spinner
+        = number_to_percentage(@course.progress(current_user), precision: 0)
+        completed.
+      - @lessons.each do |lesson|
+        - if lesson == @lesson
+          %li.list-group-item.list-group-item-primary
+            = render 'lessons/lesson_preview', lesson: lesson
+        - else
+          %li.list-group-item
+            = render 'lessons/lesson_preview', lesson: lesson
+
+
