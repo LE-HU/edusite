@@ -7,7 +7,7 @@ class Lesson < ApplicationRecord
 
   validates :title, :content, :course, presence: true
   belongs_to :course, counter_cache: true
-  has_many :user_lessons
+  has_many :user_lessons, dependent: :destroy
 
   def to_s
     title
