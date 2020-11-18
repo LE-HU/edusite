@@ -10,6 +10,14 @@ class HomeController < ApplicationController
   end
 
   def activity
+    authorize current_user
     @activities = PublicActivity::Activity.all
+  end
+
+  def statistics
+    authorize current_user
+    @users_chart = User.group_by_day(:created_at).count
+    @enrollments_chart = Enrollment.group_by_day(:created_at).count
+    @course_popularity_chart = Enrollment.joins(:course).group(:'courses.title').count
   end
 end

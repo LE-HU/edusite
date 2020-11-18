@@ -71,6 +71,9 @@
                 = link_to activity_path, class: "dropdown-item" do
                   .fa.fa-bell
                   Activity
+                = link_to statistics_path, class: "dropdown-item" do
+                  .fa.fa-chart-area
+                  Statistics
 
         = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
           .input-group

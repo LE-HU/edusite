@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   end
   root "home#index"
   get "activity", to: "home#activity"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get "statistics", to: "home#statistics"
 end
