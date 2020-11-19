@@ -41,3 +41,16 @@
         = link_to "Add a lesson", new_course_lesson_path(course, @lesson), class: "btn btn-sm btn-primary"
         = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
         = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    - if policy(course).destroy?
+      .card-footer
+        - if course.published?
+          .badge.badge-primary Published
+        - else
+          .badge.badge-secondary Draft
+        - if policy(course).approve?
+          - if course.approved?
+            .badge.badge-primary Approved
+            = link_to 'Unapprove', unapprove_course_path(course), method: :patch, class: 'btn btn-sm btn-secondary'
+          - else
+            .badge.badge-secondary Unapproved
+            = link_to 'Approve', approve_course_path(course), method: :patch, class: 'btn btn-sm btn-primary'

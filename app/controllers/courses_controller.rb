@@ -1,10 +1,10 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :approve, :unapprove]
 
   def index
     @all_courses = Course.all
     @ransack_path = courses_path
-    @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
+    @ransack_courses = Course.published.approved.ransack(params[:courses_search], search_key: :courses_search)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
   end
 
@@ -84,6 +84,25 @@ class CoursesController < ApplicationController
     render "index"
   end
 
+  def unapproved
+    @ransack_path = unapproved_courses_path
+    @ransack_courses = Course.unapproved.ransack(params[:courses_search], search_key: :courses_search)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    render "index"
+  end
+
+  def approve
+    authorize @course, :approve?
+    @course.update_attributes(approved: true)
+    redirect_to @course, notice: "Course approved."
+  end
+
+  def unapprove
+    authorize @course, :approve?
+    @course.update_attributes(approved: false)
+    redirect_to @course, alert: "Course unapproved."
+  end
+
   private
 
   def set_course
@@ -92,6 +111,6 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:title, :description, :short_description,
-                                   :price, :language, :level)
+                                   :price, :language, :level, :published)
   end
 end
