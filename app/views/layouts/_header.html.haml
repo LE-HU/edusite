@@ -72,7 +72,7 @@
                   .fa.fa-graduation-cap
                   Unapproved Courses
                   .badge.badge-dark
-                    = Course.unapproved.count
+                    = Course.published.unapproved.count
                 = link_to activity_path, class: "dropdown-item" do
                   .fa.fa-bell
                   Activity

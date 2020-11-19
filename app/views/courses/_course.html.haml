@@ -47,7 +47,7 @@
           .badge.badge-primary Published
         - else
           .badge.badge-secondary Draft
-        - if policy(course).approve?
+        - if policy(course).approve? && course.published?
           - if course.approved?
             .badge.badge-primary Approved
             = link_to 'Unapprove', unapprove_course_path(course), method: :patch, class: 'btn btn-sm btn-secondary'
