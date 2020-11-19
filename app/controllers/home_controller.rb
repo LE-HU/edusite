@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
   def activity
     authorize current_user
-    @activities = PublicActivity::Activity.all
+    @pagy, @activities = pagy(PublicActivity::Activity.all.order(created_at: :DESC))
   end
 
   def statistics
