@@ -42,8 +42,11 @@ class User < ApplicationRecord
   end
 
   def view_lesson(lesson)
-    unless self.user_lessons.where(lesson: lesson).any?
-      self.user_lessons.create(lesson: lesson)
+    user_lesson = self.user_lessons.where(lesson: lesson)
+    unless user_lesson.any?
+      user_lessons.create(lesson: lesson)
+    else
+      user_lesson.first.increment!(:impressions)
     end
   end
 

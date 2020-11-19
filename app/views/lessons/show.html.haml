@@ -10,11 +10,12 @@
 = link_to @lesson.title, course_lesson_path(@course, @lesson)
 %p
 
+-# = @lesson.user_lessons.where(user: current_user).first.impressions
+
 .row
   .col-lg-8
     = render 'lessons/lesson', lesson: @lesson
   .col.lg-4
-
     %ul.list-group
       %li.list-group-item
         .fa.fa-graduation-cap
