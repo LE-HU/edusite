@@ -12,3 +12,8 @@
     .card-footer
       = link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "btn btn-sm btn-primary"
       = link_to 'Destroy', [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary"
+  .card-footer
+    - unless lesson.prev.nil?
+      = link_to "Previous", course_lesson_path(@course, lesson.prev), class: "btn btn-sm btn-primary"
+    - unless lesson.next.nil?
+      = link_to "Next", course_lesson_path(@course, lesson.next), class: "float-right btn btn-sm btn-primary"

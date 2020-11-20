@@ -45,12 +45,12 @@
     - if policy(course).destroy?
       .card-footer
         - if course.published?
-          .badge.badge-dark Published
+          .badge.badge-primary Published
         - else
           .badge.badge-dark Draft
         - if policy(course).approve? && course.published?
           - if course.approved?
-            .badge.badge-dark Approved
+            .badge.badge-primary Approved
             = link_to 'Unapprove', unapprove_course_path(course), method: :patch, class: 'btn btn-sm btn-primary'
           - else
             .badge.badge-dark Unapproved
