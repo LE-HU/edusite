@@ -49,8 +49,8 @@
           %td= user.enrollments_count
           %td
             - user.roles.each do |role|
-              .badge.badge-info
+              .badge.badge-dark
                 = role.name
             - if policy(user).edit?
-              = link_to 'Edit roles', edit_user_path(user), class: "btn btn-sm btn-warning"
+              = link_to 'Edit roles', edit_user_path(user), class: "btn btn-sm btn-primary"
 != pagy_bootstrap_nav(@pagy)

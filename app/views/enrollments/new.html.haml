@@ -12,7 +12,7 @@
   .card-body
     = form_tag course_enrollments_path(@course) do
       = label_tag
-      = submit_tag "Enroll for #{number_to_currency(@course.price)}", class: "btn btn-sm btn-success"
+      = submit_tag "Enroll for #{number_to_currency(@course.price)}", class: "btn btn-sm btn-primary"
 
   .card-footer
     = link_to 'Back', course_path(@course)

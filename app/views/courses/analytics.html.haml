@@ -1,0 +1,27 @@
+- content_for :title do
+  Edusite
+  |
+  = @course.title
+  Analytics
+
+= link_to 'Courses', courses_path
+\/
+= link_to @course.title, course_path(@course)
+\/
+= link_to "Analytics", analytics_course_path(@course)
+
+%h2.h3.my-3
+  Enrollments per day
+= line_chart @course.enrollments.group_by_day(:created_at).count
+
+%h2.h4.my-3
+  Revenue per day
+= line_chart @course.enrollments.group_by_day(:created_at).sum(:price)
+
+%h2.h4.my-3
+  Unique user views per lesson
+= bar_chart @course.user_lessons.joins(:lesson).group(:'lessons.title').count
+
+%h2.h4.my-3
+  Impressions per lesson
+= bar_chart @course.user_lessons.joins(:lesson).group(:'lessons.title').sum(:impressions)

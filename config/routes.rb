@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :lessons
     resources :enrollments, only: [:new, :create]
     member do
+      get :analytics
       patch :approve
       patch :unapprove
     end
