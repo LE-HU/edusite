@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
-    resources :lessons
+    resources :lessons do
+      put :sort
+    end
     resources :enrollments, only: [:new, :create]
     member do
       get :analytics
