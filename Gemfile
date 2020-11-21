@@ -46,3 +46,4 @@ gem "chartkick", "~> 3.4", ">= 3.4.2"
 gem "groupdate", "~> 5.2", ">= 5.2.1"
 gem "rails-erd", "~> 1.6", group: :development
 gem "ranked-model", "~> 0.4.6"
+gem "aws-sdk-s3", require: false
