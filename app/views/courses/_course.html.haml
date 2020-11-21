@@ -2,6 +2,9 @@
   .card-header
     .fa.fa-graduation-cap
     = link_to course.title, course_path(course)
+  - if course.avatar.attached?
+    .card-img-top
+      = image_tag course.avatar, width: "100%", height: "230px"
   .card-body
     %small= simple_format(course.short_description)
   .card-footer

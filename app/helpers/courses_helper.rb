@@ -2,7 +2,7 @@ module CoursesHelper
   def enrollment_button(course)
     if current_user
       if course.user == current_user
-        link_to "View analytics", course_path(course), class: "btn btn-sm btn-primary"
+        link_to "View course", course_path(course), class: "btn btn-sm btn-primary"
       elsif course.enrollments.where(user: current_user).any?
         link_to course_path(course) do
           "<i class='fa fa-spinner'></i>".html_safe + " " +

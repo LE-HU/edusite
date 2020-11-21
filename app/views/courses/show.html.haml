@@ -27,8 +27,7 @@
       = @course.level
       %p
       = @course.description
-      - if @course.avatar.attached?
-        = image_tag @course.avatar, width: "100%", class: "mt-3"
+
     %h2.h4.my-3
       .fa.fa-tasks
       = pluralize(@course.lessons_count, "Lesson")

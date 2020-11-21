@@ -8,6 +8,7 @@ class Course < ApplicationRecord
   validates :title, :description, :short_description, :language, :price, :level, presence: true
   validates :title, uniqueness: true
   validates :description, presence: true, length: { :minimum => 5 }
+  validates :avatar, content_type: ["image/png", "image/jpg", "image/jpeg"], size: { less_than: 1.megabyte, message: "Allowed file size < 1 Mb" }
 
   belongs_to :user, counter_cache: true
   has_many :lessons, dependent: :destroy

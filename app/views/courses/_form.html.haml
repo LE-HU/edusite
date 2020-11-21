@@ -7,9 +7,12 @@
     = f.input :title
     - if @course.avatar.attached?
       = image_tag @course.avatar, width: "25%", class: "mt-2 mb-3"
+      %br
+      = @course.avatar.filename
     .row
     = f.label "Add course picture:", class: "my-3"
     = f.file_field :avatar
+    %small= f.error :avatar, class: 'text-danger'
     = f.input :description, as: :rich_text_area
     %small= f.error :description, class: 'text-danger'
     = f.input :short_description
