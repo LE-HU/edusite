@@ -11,9 +11,14 @@ class Lesson < ApplicationRecord
 
   validates :title, :content, :course, presence: true
   validates :title, length: { maximum: 70 }
+  validates :video, content_type: ["video/mp4"], size: { less_than: 50.megabytes, message: "Allowed file size < 50 Mb" }
+  validates :video_thumbnail, content_type: ["image/png", "image/jpg", "image/jpeg"], size: { less_than: 1.megabyte, message: "Allowed file size < 1 Mb" }
+  validates_uniqueness_of :title, scope: :course_id
 
   belongs_to :course, counter_cache: true
   has_many :user_lessons, dependent: :destroy
+  has_one_attached :video
+  has_one_attached :video_thumbnail
 
   def to_s
     title
