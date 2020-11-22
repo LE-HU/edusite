@@ -1,16 +1,19 @@
 class Lesson < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
+
   include PublicActivity::Model
   tracked owner: Proc.new { |controller, model| controller.current_user }
   has_rich_text :content
 
-  validates :title, :content, :course, presence: true
-  belongs_to :course, counter_cache: true
-  has_many :user_lessons, dependent: :destroy
-
   include RankedModel
   ranks :row_order, :with_same => :course_id
+
+  validates :title, :content, :course, presence: true
+  validates :title, length: { maximum: 70 }
+
+  belongs_to :course, counter_cache: true
+  has_many :user_lessons, dependent: :destroy
 
   def to_s
     title

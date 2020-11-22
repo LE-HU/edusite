@@ -23,5 +23,5 @@
 = bar_chart @course.user_lessons.joins(:lesson).group(:'lessons.title').count
 
 %h2.h4.my-3
-  Impressions per lesson
+  Views per lesson
 = bar_chart @course.user_lessons.joins(:lesson).group(:'lessons.title').sum(:impressions)
