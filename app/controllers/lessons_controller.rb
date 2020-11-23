@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy, :delete_video]
 
   def index
     @lessons = Lesson.all
@@ -65,6 +65,15 @@ class LessonsController < ApplicationController
     authorize lesson, :edit?
     lesson.update(lesson_params)
     render body: nil
+  end
+
+  def delete_video
+    authorize @lesson, :edit?
+    @lesson.video.purge
+    if @lesson.video_thumbnail.attached?
+      @lesson.video_thumbnail.purge
+    end
+    redirect_to edit_course_lesson_path(@course, @lesson), notice: "Video succesfully deleted."
   end
 
   private

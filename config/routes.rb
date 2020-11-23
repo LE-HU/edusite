@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     resources :lessons do
       put :sort
+      member do
+        delete :delete_video
+      end
     end
     resources :enrollments, only: [:new, :create]
     member do
