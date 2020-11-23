@@ -7,6 +7,12 @@
     = link_to lesson.title, course_lesson_path(@course, lesson)
   - if policy(lesson).show?
     .card-body
+      - if @lesson.video_thumbnail.attached?
+        %video(controls="true" poster="#{url_for @lesson.video_thumbnail}" width="50%" preload="metadata")
+          %source{src: rails_blob_url(@lesson.video), type: "#{@lesson.video.content_type}"}
+      - elsif @lesson.video.attached?
+        %video(controls="true" width="50%" preload="metadata")
+          %source{src: rails_blob_url(@lesson.video), type: "#{@lesson.video.content_type}"}
       = lesson.content
   - if policy(lesson).edit?
     .card-footer
