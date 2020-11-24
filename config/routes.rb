@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :enrollments do
     get :my_students, on: :collection
   end
+  resources :youtube, only: :show
   root "home#index"
   get "activity", to: "home#activity"
   get "statistics", to: "home#statistics"
