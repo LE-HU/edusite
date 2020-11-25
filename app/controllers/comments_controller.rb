@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:create]
+  before_action :set_comment, only: [:create, :destroy]
 
   def create
     if @comment.save
@@ -9,12 +9,21 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment.destroy
+    redirect_to course_lesson_path(@course, @lesson), notice: "Comment was successfully deleted."
+  end
+
   private
 
   def set_comment
     @course = Course.friendly.find(params[:course_id])
     @lesson = Lesson.friendly.find(params[:lesson_id])
-    @comment = Comment.new(comment_params)
+    begin
+      @comment = Comment.find(params[:id])
+    rescue
+      @comment = Comment.new(comment_params)
+    end
     @comment.user = current_user
     @comment.lesson_id = @lesson.id
   end

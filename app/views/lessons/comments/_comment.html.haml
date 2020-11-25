@@ -4,5 +4,7 @@
     (#{time_ago_in_words(comment.created_at)} ago)
     by
     = link_to comment.user, user_path(comment.user)
+    .float-right
+      = link_to 'Destroy', [@course, @lesson, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary"
   .card-body
     = comment.content

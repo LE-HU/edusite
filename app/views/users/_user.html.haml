@@ -30,6 +30,9 @@
     .row
     = 'enrollments to courses'.humanize
     = user.enrollments_count
+    .row
+    = 'comment'.humanize
+    = user.comments_count
   .card-footer
     - user.roles.each do |role|
       .badge.badge-dark

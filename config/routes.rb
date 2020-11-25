@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     resources :lessons, except: [:index] do
-      resources :comments, only: [:create, :delete]
+      resources :comments, only: [:create, :destroy]
       put :sort
       member do
         delete :delete_video

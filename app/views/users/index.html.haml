@@ -28,6 +28,7 @@
         %th= sort_link(@q, :last_sign_in_ip)
         %th= sort_link(@q, :courses_count)
         %th= sort_link(@q, :enrollments_count)
+        %th= sort_link(@q, :comments_count)
         %th= sort_link(@q, :roles)
     %tbody
       - @users.each do |user|
@@ -47,6 +48,7 @@
           %td= user.last_sign_in_ip
           %td= user.courses_count
           %td= user.enrollments_count
+          %td= user.comments_count
           %td
             - user.roles.each do |role|
               .badge.badge-dark
