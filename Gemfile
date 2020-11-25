@@ -49,3 +49,4 @@ gem "ranked-model", "~> 0.4.6"
 gem "aws-sdk-s3", require: false
 gem "active_storage_validations", "~> 0.9.0"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
+gem "recaptcha", "~> 5.6"

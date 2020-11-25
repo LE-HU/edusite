@@ -29,6 +29,7 @@
         %th= sort_link(@q, :courses_count)
         %th= sort_link(@q, :enrollments_count)
         %th= sort_link(@q, :comments_count)
+        %th= sort_link(@q, :user_lessons_count)
         %th= sort_link(@q, :roles)
     %tbody
       - @users.each do |user|
@@ -49,6 +50,7 @@
           %td= user.courses_count
           %td= user.enrollments_count
           %td= user.comments_count
+          %td= user.user_lessons_count
           %td
             - user.roles.each do |role|
               .badge.badge-dark
