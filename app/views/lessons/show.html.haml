@@ -13,6 +13,19 @@
 .row
   .col-lg-8
     = render 'lessons/lesson', lesson: @lesson
+
+    %h2.h5.my-3
+      .fa.fa-comment
+      = @comments.count
+      Comments
+    .card
+      .card-header
+        Add a comment
+      .card-body
+        = render 'lessons/comments/form'
+    - @comments.each do |comment|
+      = render 'lessons/comments/comment', comment: comment
+
   .col.lg-4
     %ul.list-group
       %li.list-group-item
@@ -29,3 +42,5 @@
         - else
           %li.list-group-item
             = render 'lessons/lesson_preview', lesson: lesson
+
+

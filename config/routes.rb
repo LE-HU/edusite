@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
-    resources :lessons do
+    resources :lessons, except: [:index] do
+      resources :comments, only: [:create, :delete]
       put :sort
       member do
         delete :delete_video

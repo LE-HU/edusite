@@ -1,0 +1,8 @@
+.card.my-3
+  .card-header.small
+    = comment.created_at.strftime('%d-%m-%Y %H:%m')
+    (#{time_ago_in_words(comment.created_at)} ago)
+    by
+    = link_to comment.user, user_path(comment.user)
+  .card-body
+    = comment.content
