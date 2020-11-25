@@ -11,6 +11,6 @@
   = lesson.comments_count
   - if policy(lesson).edit?
     .fa.fa-eye
-    = lesson.user_lessons.count
+    = lesson.user_lessons_count
     = link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "btn btn-sm btn-primary"
     = link_to 'Destroy', [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary"
