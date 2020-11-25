@@ -12,7 +12,7 @@
 
 %ul.list-group
   - @activities.each do |activity|
-    %li.list-group-item
+    %li.list-group-item.small
       = activity.created_at.strftime('%d-%m-%Y %H:%m')
       (#{time_ago_in_words(activity.created_at)})
       = activity.trackable_type
@@ -20,7 +20,12 @@
         - if Lesson.where(id: activity.trackable_id).present?
           = link_to activity.trackable, course_lesson_path(activity.trackable.course, activity.trackable)
         - else
-          Lesson was deleted
+          \- Lesson was deleted
+      - elsif activity.trackable_type == "Comment"
+        - if Comment.where(id: activity.trackable_id).present?
+          = link_to activity.trackable, course_lesson_path(activity.trackable.lesson.course, activity.trackable.lesson)
+        - else
+          \- Comment was deleted
       - else
         = link_to activity.trackable, activity.trackable
       = activity.key
