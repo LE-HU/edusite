@@ -8,11 +8,11 @@
   - if policy(lesson).show?
     .card-body
       - if @lesson.video_thumbnail.attached?
-        %video(controls="true" poster="#{url_for @lesson.video_thumbnail}" width="100%" preload="metadata")
+        %video(controls="true" controllist="nodownload" poster="#{url_for @lesson.video_thumbnail}" width="100%" preload="metadata")
           %source{src: rails_blob_url(@lesson.video), type: "#{@lesson.video.content_type}"}
         %br
       - elsif @lesson.video.attached?
-        %video(controls="true" width="100%" preload="metadata")
+        %video(controls="true" controllist="nodownload" width="100%" preload="metadata")
           %source{src: rails_blob_url(@lesson.video), type: "#{@lesson.video.content_type}"}
         %br
 
