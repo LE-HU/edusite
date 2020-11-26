@@ -8,27 +8,33 @@
   = action_name.humanize
   courses
   .badge.badge-dark
-    - if @all_courses.nil?
+    - if @courses.nil?
       0
     - else
-      = @all_courses.count
+      = @courses.count
 
 .row
   .col-md-2
     %div.my-3
       = search_form_for @ransack_courses, as: :courses_search, url: @ransack_path do |f|
         = sort_link((@ransack_courses), :title)
-        = f.search_field :title_cont, placeholder: 'title_cont', class: 'form-control my-1'
+        = f.search_field :title_cont, placeholder: 'title', class: 'form-control'
+        = sort_link((@ransack_courses), :tag)
+        = f.search_field :course_tags_tag_name_cont, placeholder: 'tag', class: 'form-control'
         = sort_link((@ransack_courses), :short_description)
-        = f.search_field :short_description_cont, placeholder: 'short_description_cont', class: 'form-control my-1'
+        = f.search_field :short_description_cont, placeholder: 'short description', class: 'form-control'
         = sort_link((@ransack_courses), :language)
-        = f.select :language_cont, Course.languages, include_blank: true, class: 'form-control my-1'
+        %br
+        = f.select :language_cont, Course.languages, include_blank: true, class: 'form-control'
+        %br
         = sort_link((@ransack_courses), :level)
-        = f.select :level_cont, Course.levels, include_blank: true, class: 'form-control my-1'
+        %br
+        = f.select :level_cont, Course.levels, include_blank: true, class: 'form-control'
+        %br
         = sort_link((@ransack_courses), :price)
-        = f.search_field :price_eq, placeholder: 'price', class: 'form-control my-1'
+        = f.search_field :price_eq, placeholder: 'price', class: 'form-control'
         = sort_link((@ransack_courses), :user_email)
-        = f.search_field :user_email_cont, placeholder: 'user_email', class: 'form-control my-1'
+        = f.search_field :user_email_cont, placeholder: 'teacher', class: 'form-control'
         = sort_link((@ransack_courses), :average_rating, "Average rating")
         %br
         = sort_link((@ransack_courses), :created_at, "Creation date")
@@ -38,6 +44,13 @@
         = f.submit :Submit, class: "btn btn-primary mt-2"
         %br
         = link_to "Refresh", @ransack_path, class: "btn btn-primary mt-2"
+    %div.my-3
+      - @tags.order(course_tags_count: :DESC).each do |tag|
+        = link_to courses_path(courses_search: {course_tags_tag_id_eq: tag.id}) do
+          .badge.badge-dark.m-1
+            = "#" + tag.name
+            = tag.course_tags_count
+
   .col-md-10
     != pagy_bootstrap_nav(@pagy)
     .card-columns
