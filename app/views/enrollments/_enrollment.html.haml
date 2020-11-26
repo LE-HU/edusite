@@ -9,6 +9,7 @@
     = link_to enrollment.user.username, user_path(enrollment.user)
     .fa.fa-clock
     = time_ago_in_words(enrollment.updated_at)
+    ago
     .fa.fa-graduation-cap
     = link_to enrollment.course, course_path(enrollment.course)
   .card-body
