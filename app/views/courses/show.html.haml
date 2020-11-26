@@ -46,7 +46,8 @@
       .fa.fa-comment
       = pluralize(@enrollments_with_review.count, "Review")
     - @enrollments_with_review.each do |enrollment|
-      = render 'enrollments/enrollment', enrollment: enrollment
+      %p.my-2
+        = render 'enrollments/enrollment', enrollment: enrollment
 
 
   .col-lg-4.order-0.order-lg-1

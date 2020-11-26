@@ -16,22 +16,17 @@ require("channels");
 // const imagePath = (name) => images(name, true)
 
 import "bootstrap";
-
 require("trix");
 require("@rails/actiontext");
-
 require("chartkick");
 require("chart.js");
-
 require("jquery");
 require("jquery-ui-dist/jquery-ui");
-
 import "../trix-editor-overrides";
-
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
-
 import "youtube";
+require("selectize");
 
 $(document).on("turbolinks:load", function () {
   $(".lesson-sortable").sortable({
@@ -55,21 +50,27 @@ $(document).on("turbolinks:load", function () {
     },
   });
 
+  if ($(".selectize")) {
+    $(".selectize").selectize({
+      sortField: "text",
+    });
+  }
+
   $("video").bind("contextmenu", function () {
     return false;
   });
 
-  let videoPlayer = videojs(document.getElementById("my-video"), {
-    controls: true,
-    playbackRates: [0.5, 1, 1.5],
-    autoplay: false,
-    fluid: true,
-    preload: false,
-    autoplay: false,
-    liveui: true,
-    responsive: true,
-    loop: false,
-  });
-  videoPlayer.addClass("video-js");
-  videoPlayer.addClass("vjs-big-play-centered");
+  // let videoPlayer = videojs(document.getElementById("my-video"), {
+  //   controls: true,
+  //   playbackRates: [0.5, 1, 1.5],
+  //   autoplay: false,
+  //   fluid: true,
+  //   preload: false,
+  //   autoplay: false,
+  //   liveui: true,
+  //   responsive: true,
+  //   loop: false,
+  // });
+  // videoPlayer.addClass("video-js");
+  // videoPlayer.addClass("vjs-big-play-centered");
 });

@@ -58,3 +58,7 @@
           - else
             .badge.badge-dark Unapproved
             = link_to 'Approve', approve_course_path(course), method: :patch, class: 'btn btn-sm btn-primary'
+    .card-footer
+      - course.tags.each do |tag|
+        .badge.badge-dark
+          = "#" + tag.name
