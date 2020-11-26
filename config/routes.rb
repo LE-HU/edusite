@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-            registrations: "users/registrations",
-          }
+                       registrations: "users/registrations",
+                       omniauth_callbacks: "users/omniauth_callbacks",
+                     }
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     resources :lessons, except: [:index] do
