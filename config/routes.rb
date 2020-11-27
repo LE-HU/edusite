@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     get :my_students, on: :collection
   end
   resources :youtube, only: :show
+  resources :tags, only: [:create]
+
   root "home#index"
   get "activity", to: "home#activity"
   get "statistics", to: "home#statistics"
