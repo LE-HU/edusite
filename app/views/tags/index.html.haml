@@ -1,0 +1,16 @@
+- content_for :title do
+  Edusite
+  |
+  Tags
+
+%h1.text-center.h3.my-3
+  Tags
+  .badge.badge-dark
+    = @tags.count
+
+- @tags.each do |tag|
+  .row
+    = ("#" + tag.name + " " + tag.course_tags_count.to_s).ljust(20,".")
+    = link_to tag, method: :delete, data: { confirm: 'Are you sure?' } do
+      .fa.fa-minus-square
+      Delete

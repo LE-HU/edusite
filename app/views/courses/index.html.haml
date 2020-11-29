@@ -45,9 +45,9 @@
         %br
         = link_to "Refresh", @ransack_path, class: "btn btn-primary mt-2"
     %div.my-3
-      - @tags.order(course_tags_count: :DESC).each do |tag|
+      - @tags.each do |tag|
         = link_to controller: controller_name, action: action_name, courses_search: {course_tags_tag_id_eq: tag.id} do
-          .badge.badge-dark.m-1
+          .badge.font-italic
             = "#" + tag.name
             = tag.course_tags_count
 

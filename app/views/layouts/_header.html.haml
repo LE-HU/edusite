@@ -81,6 +81,9 @@
                 = link_to statistics_path, class: "dropdown-item" do
                   .fa.fa-chart-area
                   Statistics
+                = link_to tags_path, class: "dropdown-item" do
+                  .fa.fa-hashtag
+                  Tags
 
         = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
           .input-group

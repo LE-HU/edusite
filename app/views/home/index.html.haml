@@ -97,4 +97,13 @@
     = render 'enrollments/enrollment', enrollment: enrollment
 
 %hr
+%h2.h3.my-3
+  .fa.fa-hashtag
+  Popular tags
+%p
+  - @popular_tags.each do |tag|
+    .badge.font-italic
+      = link_to courses_path(course_search: { course_tags_tag_id_eg: tag.id}) do
+        = "#" + tag.name
+        = tag.course_tags_count
 

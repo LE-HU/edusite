@@ -60,5 +60,7 @@
             = link_to 'Approve', approve_course_path(course), method: :patch, class: 'btn btn-sm btn-primary'
     .card-footer
       - course.tags.each do |tag|
-        .badge.badge-dark
-          = "#" + tag.name
+        = link_to controller: controller_name, action: action_name, courses_search: {course_tags_tag_id_eq: tag.id} do
+          .badge.font-italic
+            = "#" + tag.name
+            = tag.course_tags_count
