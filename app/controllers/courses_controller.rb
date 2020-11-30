@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
     @tags = Tag.all.where.not(course_tags_count: 0).order(course_tags_count: :DESC)
     @lessons = @course.lessons.rank(:row_order)
     @enrollments_with_review = @course.enrollments.reviewed
+    @similar_courses = Course.all.where.not(id: @course.id)
   end
 
   def new

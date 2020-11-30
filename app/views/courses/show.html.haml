@@ -52,3 +52,10 @@
 
   .col-lg-4.order-0.order-lg-1
     = render @course
+
+%h2.h4.my-3
+  Similar courses
+.card-columns
+  - @similar_courses.each do |course|
+    - unless @course.tags.pluck(:id).intersection(course.tags.pluck(:id)).count.zero?
+      = render 'courses/course', course: course
