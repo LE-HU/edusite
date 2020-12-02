@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   extend FriendlyId
   friendly_id :email, use: :slugged
+  include PublicActivity::Model
+  tracked only: [:create, :destroy]
   rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable,
          :omniauthable, omniauth_providers: [:google_oauth2]
