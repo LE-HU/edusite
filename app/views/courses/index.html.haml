@@ -41,9 +41,9 @@
         %br
         = sort_link((@ransack_courses), :enrollments_count, "Popularity")
         %br
-        = f.submit :Submit, class: "btn btn-primary mt-2"
+        = f.submit :Filter, class: "btn btn-sm btn-primary mt-2"
         %br
-        = link_to "Refresh", @ransack_path, class: "btn btn-primary mt-2"
+        = link_to "Refresh", @ransack_path, class: "btn btn-sm btn-primary mt-2"
     %div.my-3
       - @tags.each do |tag|
         = link_to controller: controller_name, action: action_name, courses_search: {course_tags_tag_id_eq: tag.id} do

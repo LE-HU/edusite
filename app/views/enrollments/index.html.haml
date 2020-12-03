@@ -16,8 +16,8 @@
   = f.search_field :price_eq, placeholder: "price"
   = f.search_field :rating_eq, placeholder: "rating"
   = f.search_field :review_cont, placeholder: "review"
-  = f.submit
-  = link_to 'refresh', @ransack_path
+  = f.submit :Filter, class: "btn btn-sm btn-primary"
+  = link_to 'Refresh', @ransack_path, class: "btn btn-sm btn-primary"
 
 .table-responsive.mt-3
   %table.table.table-bordered.table-striped.table-sm

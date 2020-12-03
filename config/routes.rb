@@ -3,6 +3,7 @@ Rails.application.routes.draw do
                        registrations: "users/registrations",
                        omniauth_callbacks: "users/omniauth_callbacks",
                      }
+  resources :users, only: [:index, :show, :edit, :update]
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     resources :lessons, except: [:index] do
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
       patch :unapprove
     end
   end
-  resources :users, only: [:index, :show, :edit, :update]
   resources :enrollments do
     get :my_students, on: :collection
   end

@@ -42,22 +42,22 @@
     - if policy(course).owner?
       .card-footer
         = link_to "Add a lesson", new_course_lesson_path(course, @lesson), class: "btn btn-sm btn-primary"
-        = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-primary'
-        = link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-primary'
-        = link_to "Analytics", analytics_course_path(course), class: 'btn btn-sm btn-primary'
+        = link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning'
+        = link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+        = link_to "Analytics", analytics_course_path(course), class: 'btn btn-sm btn-secondary'
     - if policy(course).destroy?
       .card-footer
         - if course.published?
-          .badge.badge-primary Published
+          .badge.badge-success Published
         - else
           .badge.badge-dark Draft
         - if policy(course).approve? && course.published?
           - if course.approved?
-            .badge.badge-primary Approved
-            = link_to 'Unapprove', unapprove_course_path(course), method: :patch, class: 'btn btn-sm btn-primary'
+            .badge.badge-success Approved
+            = link_to 'Unapprove', unapprove_course_path(course), method: :patch, class: ''
           - else
             .badge.badge-dark Unapproved
-            = link_to 'Approve', approve_course_path(course), method: :patch, class: 'btn btn-sm btn-primary'
+            = link_to 'Approve', approve_course_path(course), method: :patch, class: ''
     .card-footer
       - course.tags.each do |tag|
         = link_to controller: controller_name, action: action_name, courses_search: {course_tags_tag_id_eq: tag.id} do

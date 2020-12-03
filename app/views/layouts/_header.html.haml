@@ -115,3 +115,10 @@
             = link_to user_google_oauth2_omniauth_authorize_path, class: 'nav-link' do
               .fab.fa-google
               Google OAuth
+          %li.nav-item
+            = form_with(url: new_user_session_path, scope: :user, local: true) do |f|
+              = f.hidden_field :email, class: 'form-control', value: "admin@example.com"
+              = f.hidden_field :password, class: 'form-control', value: "admin@example.com"
+              = f.submit "GUEST USER", class: 'nav-link btn btn-secondary text-white'
+
+

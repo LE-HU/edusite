@@ -22,8 +22,10 @@
       = lesson.content
   - if policy(lesson).edit?
     .card-footer
-      = link_to 'Edit', edit_course_lesson_path(@course, lesson), class: "btn btn-sm btn-primary"
-      = link_to 'Destroy', [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary"
+      = link_to edit_course_lesson_path(@course, lesson), class: "btn btn-sm btn-warning mx-1" do
+        .fa.fa-edit
+      = link_to [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger mx-1" do
+        .fa.fa-trash
   .card-footer
     - unless lesson.prev.nil?
       = link_to "Previous", course_lesson_path(@course, lesson.prev), class: "btn btn-sm btn-primary"
