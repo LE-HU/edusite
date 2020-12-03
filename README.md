@@ -1,24 +1,20 @@
-# README
+# EDUSITE-LH
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Online learning platform
 
-Things you may want to cover:
+Edusite-LH is an online learning platform built as an exercise. Design and implementation is based on Yaroslav's Shmarov Udemy course.
 
-* Ruby version
+Platform is CRUD heavy, having users/courses/enrollments/comments relationships.
+Emphasis is put on gems use:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- haml-rails - first project fully facilitating haml over erb.
+- bootstrap/jquery/font-awesome-sass - design.
+- devise - authentication
+- ransack - course search/filtering
+- pagy - pagination
+- rolify - admin/teacher/student roles
+- pundit - authorization
+- chartkick - analytics charts
+- recaptcha/google-oauth2
+- and more
+  See gemfile for full gem list
