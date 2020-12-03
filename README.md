@@ -18,3 +18,6 @@ Emphasis is put on gems use:
 - recaptcha/google-oauth2
 - and more
   See gemfile for full gem list
+
+Platform uses Amazon S3 and active storage for image/video storage.
+Hosted on Heroku.
