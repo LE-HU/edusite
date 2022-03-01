@@ -48,6 +48,6 @@ gem "rails-erd", "~> 1.6", group: :development
 gem "ranked-model", "~> 0.4.6"
 gem "aws-sdk-s3", require: false
 gem "active_storage_validations", "~> 0.9.0"
-gem "image_processing", "~> 1.12", ">= 1.12.1"
+gem "image_processing", "~> 1.12"
 gem "recaptcha", "~> 5.6"
 gem "omniauth-google-oauth2", "~> 0.8.0"
